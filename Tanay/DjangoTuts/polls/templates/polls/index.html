@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Polls App for the Win
+	</title>
+</head>
+<body>
+{% if latest_list %}
+<ul>
+	{% for x in latest_list %}
+	<li><a href="{% url 'polls:detail' x.id %}">{{x.question_text}}</a></li>
+	{% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

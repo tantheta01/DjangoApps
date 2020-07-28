@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Polls App for the Win
+	</title>
+</head>
+<body>
+<h1>
+    {{question.question_text}}
+
+</h1>
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="POST">
+    {% csrf_token %}
+    {% for x in question.choices_set.all %}
+    <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{x.id}}" >
+    <label for="choice{{forloop.counter}}" >
+        {{x.choice_text }}
+    </label><br>
+    {% endfor %}
+    <input type="submit" value="Vote">
+</form>
+
+</body>
+</html>
